@@ -1,0 +1,52 @@
+{
+  "rules": [
+    {
+      "from": "allotted-resource",
+      "to": "generic-vnf",
+      "label": "org.onap.relationships.inventory.PartOf",
+      "direction": "OUT",
+      "multiplicity": "MANY2MANY",
+      "contains-other-v": "NONE",
+      "delete-other-v": "NONE",
+      "prevent-delete": "NONE",
+      "default": "true",
+      "description": ""
+    },
+    {
+      "from": "allotted-resource",
+      "to": "generic-vnf1",
+      "label": "org.onap.relationships.inventory.PartOf1",
+      "direction": "OUT",
+      "multiplicity": "MANY2MANY",
+      "contains-other-v": "NONE",
+      "delete-other-v": "NONE",
+      "prevent-delete": "NONE",
+      "default": "true",
+      "description": ""
+    },
+    {
+      "from": "allotted-resource",
+      "to": "instance-group",
+      "label": "org.onap.relationships.inventory.MemberOf",
+      "direction": "OUT",
+      "multiplicity": "MANY2MANY",
+      "contains-other-v": "NONE",
+      "delete-other-v": "NONE",
+      "prevent-delete": "NONE",
+      "default": "true",
+      "description": ""
+    },
+    {
+      "from": "allotted-resource",
+      "to": "instance-group1",
+      "label": "org.onap.relationships.inventory.MemberOf1",
+      "direction": "OUT",
+      "multiplicity": "MANY2MANY",
+      "contains-other-v": "NONE",
+      "delete-other-v": "NONE",
+      "prevent-delete": "NONE",
+      "default": "true",
+      "description": ""
+    }
+  ]
+}
