@@ -1,60 +1,45 @@
 package com.learning.designpattern;
 
-interface RBI {
-	double getInterestRate();
+/** Note:
+ * Defines an interface for creating an object, but let subclasses decide which class to instantiate.
+ * Factory design pattern uses inheritance and relies on derived class or sub class to create object
+ * This pattern delegates the responsibility of initializing a class from the client to a particular factory class by creating a type of virtual constructor
+ * decouple clients from creating object they need (provides abstraction between implementation and client classes)
+ * It is used when we have a super class with multiple sub-classes and based on input, we need to return one of the sub-class.
+ * JDK example : valueOf() method in wrapper class, Calendar.getInstance()
+ **/
+interface Currency {
+    String getCurrencyCode();
 }
 
-class SBI implements RBI {
-	private double interestRate;
-
-	public SBI(double interestRate) {
-		this.interestRate = interestRate;
-	}
-
-	@Override
-	public double getInterestRate() {
-		return this.interestRate;
-	}
+class Rupee implements Currency {
+    @Override
+    public String getCurrencyCode() {
+        return "Rs";
+    }
 }
 
-class BOB implements RBI {
-	private double interestRate;
-
-	public BOB(double interestRate) {
-		this.interestRate = interestRate;
-	}
-
-	@Override
-	public double getInterestRate() {
-		return this.interestRate;
-	}
+class USDollar implements Currency {
+    @Override
+    public String getCurrencyCode() {
+        return "USD";
+    }
 }
 
-final class RBIFactory {
-	private RBIFactory() {
-	}
-
-	public static RBI getInstance(String bank, double intrestRate) {
-		RBI bankObj = null;
-		switch (bank) {
-		case "SBI":
-			bankObj = new SBI(intrestRate);
-			break;
-		case "BOB":
-			bankObj = new BOB(intrestRate);
-			break;
-
-		}
-		return bankObj;
-	}
+class CurrencyFactory {
+    public static Currency createCurrency(String country) {
+        if (country.equalsIgnoreCase("India")) {
+            return new Rupee();
+        } else if (country.equalsIgnoreCase("US")) {
+            return new USDollar();
+        }
+        throw new IllegalArgumentException("No such currency");
+    }
 }
 
 public class C02FactoryPattern {
-	public static void main(String[] args) {
-		RBI sbiObj = RBIFactory.getInstance("SBI", 7.5);
-		System.out.println("Interest Rate is : " + sbiObj.getInterestRate());
-
-		RBI bobObj = RBIFactory.getInstance("BOB", 7);
-		System.out.println("Interest Rate is : " + bobObj.getInterestRate());
-	}
+    public static void main(String[] args) {
+        Currency rupee = CurrencyFactory.createCurrency("India");
+        System.out.println(rupee.getCurrencyCode());
+    }
 }

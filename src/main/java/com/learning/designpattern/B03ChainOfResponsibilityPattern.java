@@ -1,9 +1,9 @@
 package com.learning.designpattern;
 
-class Currency {
+class CurrencyClass {
 	private int amount;
 
-	public Currency(int amt) {
+	public CurrencyClass(int amt) {
 		this.amount = amt;
 	}
 
@@ -16,7 +16,7 @@ interface DispenseChain {
 
 	void setNextChain(DispenseChain nextChain);
 
-	void dispense(Currency currency);
+	void dispense(CurrencyClass currency);
 }
 
 class Dollar50Dispenser implements DispenseChain {
@@ -29,13 +29,13 @@ class Dollar50Dispenser implements DispenseChain {
 	}
 
 	@Override
-	public void dispense(Currency cur) {
+	public void dispense(CurrencyClass cur) {
 		if (cur.getAmount() >= 50) {
 			int num = cur.getAmount() / 50;
 			int remainder = cur.getAmount() % 50;
 			System.out.println("Dispensing " + num + " 50$ note");
 			if (remainder != 0)
-				this.nextChain.dispense(new Currency(remainder));
+				this.nextChain.dispense(new CurrencyClass(remainder));
 		} else {
 			this.nextChain.dispense(cur);
 		}
@@ -53,13 +53,13 @@ class Dollar20Dispenser implements DispenseChain {
 	}
 
 	@Override
-	public void dispense(Currency cur) {
+	public void dispense(CurrencyClass cur) {
 		if (cur.getAmount() >= 20) {
 			int num = cur.getAmount() / 20;
 			int remainder = cur.getAmount() % 20;
 			System.out.println("Dispensing " + num + " 20$ note");
 			if (remainder != 0)
-				this.nextChain.dispense(new Currency(remainder));
+				this.nextChain.dispense(new CurrencyClass(remainder));
 		} else {
 			this.nextChain.dispense(cur);
 		}
@@ -75,7 +75,7 @@ class Dollar10Dispenser implements DispenseChain {
 	}
 
 	@Override
-	public void dispense(Currency cur) {
+	public void dispense(CurrencyClass cur) {
 		if (cur.getAmount() >= 10) {
 			int num = cur.getAmount() / 10;
 			System.out.println("Dispensing " + num + " 10$ note");
@@ -106,7 +106,7 @@ public class B03ChainOfResponsibilityPattern {
 
 	public static void main(String[] args) {
 		ATMDispenseChain atm = new ATMDispenseChain();
-		atm.getC1().dispense(new Currency(230));
+		atm.getC1().dispense(new CurrencyClass(230));
 	}
 
 }

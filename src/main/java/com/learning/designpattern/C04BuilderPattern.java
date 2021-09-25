@@ -4,9 +4,9 @@ class Student {
 	private int studId; // mandatory
 	private String name; // Optional
 
-	private Student(StudentBuilder studentBiuilder) {
-		this.studId = studentBiuilder.studId;
-		this.name = studentBiuilder.name;
+	private Student(StudentBuilder studentBuilder) {
+		this.studId = studentBuilder.studId;
+		this.name = studentBuilder.name;
 	}
 
 	public static class StudentBuilder {
